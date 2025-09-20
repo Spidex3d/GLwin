@@ -18,6 +18,9 @@
     <ClInclude Include="include\GLwin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\GLwinDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GLwin.cpp">
