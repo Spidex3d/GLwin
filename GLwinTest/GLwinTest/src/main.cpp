@@ -2,7 +2,7 @@
 #include <GLwin.h>
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	std::cout << "Hello, main.cpp" << std::endl;
 
 
 	GLwinHello();

@@ -9,5 +9,5 @@
 
 void GLwinHello(void)
 {
-	std::cout << "Hello, World from GLwin!" << std::endl;
+	std::cout << "Hello, World from GLwin.lib!" << std::endl;
 }
