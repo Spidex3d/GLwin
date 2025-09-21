@@ -1,0 +1,59 @@
+GLwin is a window library - API
+Today I’m making a big change in my window library - API.”
+I'm moving from a C++ class-based design… (show example) …to a C-style, handle-based API—like GLFW.”
+This should makes it easier to use in both C and C++, and to bind to other languages, Not that I intend to do this
+The result: I think it's more flexible, extensible, and a more familiar API for game and graphics programmers.”
+
+The new code is on GitHub: https://github.com/Spidex3d/GLwin
+
+It's a window library API to make it easy to open a window and set up modern opengl like GLFW _ SLD_Raylib
+Road map get the window open, have a GUI, have minimal 2d and 3d objects, have a minimal Shader, have a .obj model loader
+
+ // My Window library functions for messages at startup
+ void GLwinHello(void);
+
+ // Opaque window structure
+ typedef struct GLWIN_window GLWIN_window;
+
+ // Window creation & destruction
+ GLWIN_window* GLwin_CreateWindow(int width, int height, const wchar_t* title);
+ void GLwin_DestroyWindow(GLWIN_window* window);
+
+ // Window/context management
+ void GLwinMakeContextCurrent(GLWIN_window* window);
+ void GLwinSwapBuffers(GLWIN_window* window);
+ void GLwinPollEvents(void);
+ int  GLwinWindowShouldClose(GLWIN_window* window);
+  // Window hints (stub, for API compatibility)
+ void GLwinWindowHint(int hint, int value);
+	// Set window position
+	// set window opacity
+	// set window focus
+	// get window refresh rate
+
+ // Framebuffer size and window state
+ void GLwinGetFramebufferSize(GLWIN_window* window, int* width, int* height);
+ int  GLwinGetWidth(GLWIN_window* window);
+ int  GLwinGetHeight(GLWIN_window* window);
+
+ // Window icon and maximize
+ void GLwinSetWindowIcon(GLWIN_window* window, const wchar_t* iconPath);
+ // bool GLwinSetScreenMaximized(GLWIN_window* window, bool maximize);
+
+
+ // Keyboard input API
+ int GLwinGetKey(GLWIN_window* window, int keycode);
+
+
+ // Mouse input API
+ int GLwinGetMouseButton(GLWIN_window* window, int button);
+ void GLwinGetCursorPos(GLWIN_window* window, double* xpos, double* ypos);
+
+	// GLwinUI: Simple GUI message box
+	// GLwinUI_MessageBox(const wchar_t* title, const wchar_t* message);
+
+ // Optional: callback for resize
+ typedef void(*GLwinResizeCallback)(int width, int height);
+
+ // Terminate and cleanup library (optional, for symmetry with GLFW)
+ void GLwinTerminate(void);

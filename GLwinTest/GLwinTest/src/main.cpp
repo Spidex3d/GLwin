@@ -1,3 +1,8 @@
+// The new code is on GitHub : https://github.com/Spidex3d/GLwin
+
+// It's a window library API to make it easy to open a window and set up modern opengl like GLFW _ SLD_Raylib
+// Road map get the window open, have a GUI, have minimal 2d and 3d objects, have a minimal Shader, have a.obj model loader
+
 #include <iostream>
 #include <glad/glad.h>// Include glad to get the OpenGL headers
 #include <GLwin.h>  // Include the GLwin header file my GLFW
