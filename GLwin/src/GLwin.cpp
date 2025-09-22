@@ -1,4 +1,5 @@
 #include "../GLwin.h"
+#include "../GLwinLog.h"
 
 #include <windows.h>
 
@@ -52,6 +53,15 @@ static LRESULT CALLBACK GLwin_WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 
 void GLwinHello(void) {
     std::cout << "Hello, GLwin API Test!" << std::endl;
+    int errorCode = 42; // Example value
+    int x = 1, y = 2;
+    GLWIN_LOG_INIT("GLwin: Logging initialized.");
+
+    GLWIN_LOG_ERROR("Something went wrong: " << errorCode);
+    GLWIN_LOG_WARNING("This might be a problem");
+    GLWIN_LOG_INFO("Starting process X");
+    GLWIN_LOG_TRACE("Tracing process X");
+    GLWIN_LOG_DEBUG("x=" << x << ", y=" << y);
 }
 
 GLWIN_window* GLwin_CreateWindow(int width, int height, const wchar_t* title) {
@@ -68,7 +78,7 @@ GLWIN_window* GLwin_CreateWindow(int width, int height, const wchar_t* title) {
     GLWIN_window* win = new GLWIN_window();
     win->width = width;
     win->height = height;
-
+	// Window hints
     DWORD style = WS_OVERLAPPEDWINDOW;
     if (!g_GLwinResizableHint) {
         style &= ~(WS_THICKFRAME | WS_MAXIMIZEBOX); // Remove resizing and maximize

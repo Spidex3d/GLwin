@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="include\GLwin.h" />
     <ClInclude Include="include\GLwinDefs.h" />
+    <ClInclude Include="include\GLwinLog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GLwin.cpp" />

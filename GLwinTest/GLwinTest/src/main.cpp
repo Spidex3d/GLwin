@@ -6,22 +6,24 @@
 #include <iostream>
 #include <glad/glad.h>// Include glad to get the OpenGL headers
 #include <GLwin.h>  // Include the GLwin header file my GLFW
+#include <GLwinLog.h> // Include the GLwin logging header
 
 int main() {
-	std::cout << "Starting GLwin! with Modern OpenGL" << std::endl;
-
+	
 	GLwinHello();
 
-
 	GLwinWindowHint(0, 0); // Not implemented
-	GLwinWindowHint(GLWIN_MAXIMIZED, GLWIN_FALSE);
+	GLwinWindowHint(GLWIN_MAXIMIZED, GLWIN_FALSE); // Default is not maximized
 	GLwinWindowHint(GLWIN_RESIZABLE, GLWIN_TRUE); // Default is resizable
 
 	GLWIN_window* window = GLwin_CreateWindow(1200, 600, L"Starting GLwin! with Modern OpenGL");
 
 	if (!window) {
-		std::cerr << "Failed to create window!" << std::endl;
+		GLWIN_LOG_WARNING("Failed to create window!");
 		return 1;
+	}
+	else {
+		GLWIN_LOG_INFO("Window created successfully.");
 	}
 
 	// Set a custom icon (make sure "icon.ico" exists in working directory next to the .exe file)
@@ -29,18 +31,23 @@ int main() {
 	GLwinMakeContextCurrent(window);
 	int w, h;
 	GLwinGetFramebufferSize(window, &w, &h);
-	std::cout << "Framebuffer size: " << w << " x " << h << std::endl;
+	//std::cout << "Framebuffer size: " << w << " x " << h << std::endl;
+	GLWIN_LOG_DEBUG("Framebuffer x=" << w << ", y=" << h);
 
 	if (!gladLoadGL()) {
-		std::cerr << "Failed to initialize GLAD!" << std::endl;
+		
+		GLWIN_LOG_WARNING("Failed to initialize GLAD!");
 		return 1;
+	}
+	else {
+		GLWIN_LOG_INFO("GLAD initialized successfully.");
 	}
 
 	glEnable(GL_DEPTH_TEST); // Enable depth testing for 3D
 
 
 	glGetString(GL_VERSION); // Ensure context is current
-	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+	GLWIN_LOG_INFO("OpenGL version " << glGetString(GL_VERSION));
 
 	while (!GLwinWindowShouldClose(window)) {
 		// Poll and handle events (inputs, window resize, etc.)
@@ -71,8 +78,8 @@ int main() {
 		GLwinSwapBuffers(window);
 
 		GLenum err = glGetError();
-		if (err != GL_NO_ERROR) std::cout << "OpenGL error: " << err << std::endl;
-
+		if (err != GL_NO_ERROR)
+		GLWIN_LOG_ERROR("Something went wrong with opengl: " << err);
 
 	}
 	GLwin_DestroyWindow(window); // Clean up and close window

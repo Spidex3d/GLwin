@@ -4,8 +4,9 @@
 #include "GLwinDefs.h"
 
 // The new code is on GitHub : https://github.com/Spidex3d/GLwin
-// It's a window library API to make it easy to open a window and set up modern opengl like GLFW _ SLD_Raylib
-// Road map get the window open, have a GUI, have minimal 2d and 3d objects, have a minimal Shader, have a.obj model loader
+// It's a window library API to make it easy to open a window and set up modern opengl like GLFW _ SLD _ Raylib
+// Road map get the window open, have a Logging system, GUI, have minimal 2d and 3d objects,
+// have a minimal Shader, have a.obj model loader
 
 #define WIN32_LEAN_AND_MEAN  // Exclude rarely-used stuff from Windows headers
 
@@ -28,7 +29,8 @@ extern "C" {
     void GLwinSwapBuffers(GLWIN_window* window);
     void GLwinPollEvents(void);
     int  GLwinWindowShouldClose(GLWIN_window* window);
-     // Window hints (stub, for API compatibility)
+     // Window hints (Maximize, Resizeabel, Done)
+	//TO DO GLWIN_CONTEXT_VERSION_MAJOR, GLWIN_CONTEXT_VERSION_MINOR, GLWIN_OPENGL_PROFILE, GLWIN_OPENGL_CORE_PROFILE
     void GLwinWindowHint(int hint, int value);
 	// Set window position
 	// set window opacity
@@ -45,6 +47,16 @@ extern "C" {
     // Window icon and maximize
     void GLwinSetWindowIcon(GLWIN_window* window, const wchar_t* iconPath);
 
+	// Time API
+	// getTime
+	// getElapsedTime
+	// getFrameTime
+	// setTargetFPS
+	// waitTime
+
+	// Logging API
+
+
     // Keyboard input API
     int GLwinGetKey(GLWIN_window* window, int keycode);
 
@@ -55,7 +67,17 @@ extern "C" {
 	// GLwinUI: Simple GUI message box
 	// GLwinUI_MessageBox(const wchar_t* title, const wchar_t* message);
 
-    
+	// Font loading API
+	// Text drawing on screen like raylib
+
+	// Basic 2D drawing API
+	// Sprite drawing 
+
+	// object loading API
+
+	// Shader loading API
+
+	// Sound loading API
 
     // Terminate and cleanup library (optional, for symmetry with GLFW)
     void GLwinTerminate(void);
